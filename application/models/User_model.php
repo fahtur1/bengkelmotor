@@ -10,6 +10,28 @@ class User_model extends CI_Model
 
     public function insert($data)
     {
-        $this->db->insert('user', $data);
+        return $this->db->insert('user', $data);
+    }
+
+    public function getAllUser()
+    {
+        return $this->db->get('user')->result_array();
+    }
+
+    public function editUser($data)
+    {
+        $this->db->where('id', $data['id']);
+        return $this->db->update('user', $data);
+    }
+
+    public function getUserById($id)
+    {
+        return $this->db->get_where('user', ['id' => $id])->row_array();
+    }
+
+    public function deleteUser($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('user');
     }
 }
