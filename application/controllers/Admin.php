@@ -12,11 +12,12 @@ class Admin extends CI_Controller
     public function index()
     {
         $data = [
-            'users' => $this->User_model->getAllUser()
+            'users' => $this->User_model->getAllUser(),
+            'admin' => $this->User_model->getUserById($this->session->userdata('id'))
         ];
 
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('admin/list_user', $data);
         $this->load->view('templates/admin_footer');
     }
