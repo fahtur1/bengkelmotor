@@ -41,7 +41,8 @@ class Admin extends CI_Controller
 
             if ($id != null) {
                 $data = [
-                    'user' => $this->User_model->getUserById($id)
+                    'user' => $this->User_model->getUserById($id),
+                    'admin' => $this->User_model->getUserById($this->session->userdata('id'))
                 ];
             }
             $this->load->view('templates/admin_header');
